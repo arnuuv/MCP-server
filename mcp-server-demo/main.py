@@ -41,7 +41,31 @@ def read_notes() -> str:
 
 @mcp.resource("notes://latest")
 def get_latest_note() -> str:
+    '''
+    Get the latest note from the sticky note file.
+    
+    Returns:
+        str: The latest note from the file.
+        If no notes are available, it returns a message indicating that.
+    '''
     ensure_file()
     with open(NOTES_FILE, "r") as f:
         lines = f.readlines()
     return lines[-1].strip() if lines else "No notes yet."
+
+@mcp.prompt()
+def notes_summary_prompt() -> str:
+    '''
+    Generate a prompt asking the AI to summarize the current notes.
+    
+    Returns:
+        str: A prompt string that includes all notes and asks for a summary.
+             If no notes are available, it returns a message indicating that.
+    '''
+    ensure_file()
+    with open(NOTES_FILE, "r") as f:
+        content = f.read().strip()
+    if not content:
+        return "No notes yet."
+    
+    return f"Here are the latest notes:\n{content}"
