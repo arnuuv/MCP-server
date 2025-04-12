@@ -12,11 +12,17 @@ def ensure_file():
 
 @mcp.tool()
 def add_note(message: str) -> str:
+    '''
+    Append a new note to the sticky note file.
+    
+    Args:
+        message(str): The note content to add.
+        
+    Returns:
+        str: Confirmation message indicating the note has been added.
+    '''
     ensure_file()
     with open(NOTES_FILE, "a") as f:
         f.write(message + "\n")
     return "Note added successfully!"
 
-@mcp.tool()
-def get_notes() -> str:
-    
