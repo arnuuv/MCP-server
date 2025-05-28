@@ -139,6 +139,15 @@ def get_monkey_characteristics() -> dict:
                 characteristics[characteristic] = fact
     return characteristics
 
+def get_monkey_habitats() -> list:
+    """
+    Feature 7: Extract information about monkey habitats
+    Returns a list of facts mentioning habitats or locations
+    """
+    facts = read_monkey_facts()
+    habitat_keywords = ['found in', 'native to', 'live in', 'habitat']
+    return [fact for fact in facts if any(keyword in fact.lower() for keyword in habitat_keywords)]
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
