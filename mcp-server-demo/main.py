@@ -91,6 +91,21 @@ def search_monkey_facts(keyword: str) -> list:
     facts = read_monkey_facts()
     return [fact for fact in facts if keyword.lower() in fact.lower()]
 
+def get_monkey_species_count() -> dict:
+    """
+    Feature 3: Count occurrences of different monkey species
+    Returns a dictionary with species names and their mention count
+    """
+    facts = read_monkey_facts()
+    species_count = {}
+    for fact in facts:
+        # Extract species names (words ending with 'monkey' or specific species)
+        words = fact.lower().split()
+        for word in words:
+            if 'monkey' in word or word in ['macaque', 'tamarin', 'marmoset', 'mandrill']:
+                species_count[word] = species_count.get(word, 0) + 1
+    return species_count
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
