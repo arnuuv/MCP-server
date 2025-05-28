@@ -114,6 +114,15 @@ def get_monkey_facts_by_length(min_length: int = 0, max_length: int = float('inf
     facts = read_monkey_facts()
     return [fact for fact in facts if min_length <= len(fact) <= max_length]
 
+def get_endangered_monkey_facts() -> list:
+    """
+    Feature 5: Extract facts about endangered monkey species
+    Returns a list of facts mentioning endangered status
+    """
+    facts = read_monkey_facts()
+    endangered_keywords = ['endangered', 'critically endangered', 'threatened']
+    return [fact for fact in facts if any(keyword in fact.lower() for keyword in endangered_keywords)]
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
