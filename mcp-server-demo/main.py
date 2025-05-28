@@ -171,6 +171,23 @@ def get_monkey_size_facts() -> dict:
             size_facts[species] = fact
     return size_facts
 
+def get_monkey_unique_features() -> dict:
+    """
+    Feature 10: Extract unique features of different monkey species
+    Returns a dictionary of unique features by species
+    """
+    facts = read_monkey_facts()
+    unique_features = {}
+    for fact in facts:
+        # Look for facts that mention unique characteristics
+        if any(phrase in fact.lower() for phrase in ['unique', 'only', 'distinctive', 'known for']):
+            # Try to extract the species name
+            words = fact.split()
+            if words:
+                species = words[0]
+                unique_features[species] = fact
+    return unique_features
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
