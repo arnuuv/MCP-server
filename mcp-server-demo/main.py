@@ -123,6 +123,22 @@ def get_endangered_monkey_facts() -> list:
     endangered_keywords = ['endangered', 'critically endangered', 'threatened']
     return [fact for fact in facts if any(keyword in fact.lower() for keyword in endangered_keywords)]
 
+def get_monkey_characteristics() -> dict:
+    """
+    Feature 6: Extract physical characteristics of monkeys
+    Returns a dictionary of characteristics and their descriptions
+    """
+    facts = read_monkey_facts()
+    characteristics = {}
+    for fact in facts:
+        if 'have' in fact.lower() or 'are' in fact.lower():
+            # Simple parsing to extract characteristics
+            parts = fact.lower().split('have' if 'have' in fact.lower() else 'are')
+            if len(parts) > 1:
+                characteristic = parts[1].strip()
+                characteristics[characteristic] = fact
+    return characteristics
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
