@@ -83,6 +83,14 @@ def read_monkey_facts():
         print("Error: notes.txt file not found")
         return []
 
+def search_monkey_facts(keyword: str) -> list:
+    """
+    Feature 2: Search monkey facts by keyword
+    Returns a list of facts containing the given keyword
+    """
+    facts = read_monkey_facts()
+    return [fact for fact in facts if keyword.lower() in fact.lower()]
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
