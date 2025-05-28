@@ -148,6 +148,15 @@ def get_monkey_habitats() -> list:
     habitat_keywords = ['found in', 'native to', 'live in', 'habitat']
     return [fact for fact in facts if any(keyword in fact.lower() for keyword in habitat_keywords)]
 
+def get_monkey_behavior_facts() -> list:
+    """
+    Feature 8: Extract facts about monkey behavior
+    Returns a list of facts about monkey behavior and social structure
+    """
+    facts = read_monkey_facts()
+    behavior_keywords = ['behavior', 'social', 'live in groups', 'troop', 'communicate']
+    return [fact for fact in facts if any(keyword in fact.lower() for keyword in behavior_keywords)]
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
