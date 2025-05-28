@@ -157,6 +157,20 @@ def get_monkey_behavior_facts() -> list:
     behavior_keywords = ['behavior', 'social', 'live in groups', 'troop', 'communicate']
     return [fact for fact in facts if any(keyword in fact.lower() for keyword in behavior_keywords)]
 
+def get_monkey_size_facts() -> dict:
+    """
+    Feature 9: Extract information about monkey sizes
+    Returns a dictionary of size-related facts
+    """
+    facts = read_monkey_facts()
+    size_facts = {}
+    for fact in facts:
+        if any(unit in fact.lower() for unit in ['inch', 'pound', 'kg', 'gram', 'meter']):
+            # Extract the species name (usually at the start of the fact)
+            species = fact.split()[0] if fact.split() else "Unknown"
+            size_facts[species] = fact
+    return size_facts
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
