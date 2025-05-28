@@ -69,3 +69,25 @@ def notes_summary_prompt() -> str:
         return "No notes yet."
 
     return f"Here are the latest notes:\n{content}"
+
+def read_monkey_facts():
+    """
+    Feature 1: Read and display monkey facts from notes.txt
+    Returns a list of all monkey facts from the notes file
+    """
+    try:
+        with open('notes.txt', 'r') as file:
+            facts = [line.strip() for line in file if line.strip()]
+        return facts
+    except FileNotFoundError:
+        print("Error: notes.txt file not found")
+        return []
+
+if __name__ == "__main__":
+    # Test the first feature
+    facts = read_monkey_facts()
+    print("Feature 1: Reading Monkey Facts")
+    print("First 3 facts:")
+    for fact in facts[:3]:
+        print(fact)
+    print("\n")
