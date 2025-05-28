@@ -106,6 +106,14 @@ def get_monkey_species_count() -> dict:
                 species_count[word] = species_count.get(word, 0) + 1
     return species_count
 
+def get_monkey_facts_by_length(min_length: int = 0, max_length: int = float('inf')) -> list:
+    """
+    Feature 4: Filter monkey facts by length
+    Returns facts that fall within the specified length range
+    """
+    facts = read_monkey_facts()
+    return [fact for fact in facts if min_length <= len(fact) <= max_length]
+
 if __name__ == "__main__":
     # Test the first feature
     facts = read_monkey_facts()
