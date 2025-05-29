@@ -53,6 +53,21 @@ def get_latest_note() -> str:
         lines = f.readlines()
     return lines[-1].strip() if lines else "No notes yet."
 
+def add_note(message: str) -> str:
+    '''
+    Append a new note to the sticky note file.
+
+    Args:
+        message(str): The note content to add.
+
+    Returns:
+        str: Confirmation message indicating the note has been added.
+    '''
+    ensure_file()
+    with open(NOTES_FILE, "a") as f:
+        f.write(message + "\n")
+    return "Note added successfully!"
+
 @mcp.prompt()
 def notes_summary_prompt() -> str:
     '''
